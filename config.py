@@ -9,10 +9,10 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID"))
-API_HASH = getenv("API_HASH")
+API_ID = int(getenv("API_ID", 13159950))
+API_HASH = getenv("API_HASH", "2cc86bef89e26cd9ca9eac928ccfbc18")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN")
+BOT_TOKEN = getenv("BOT_TOKEN",  "6960206173:AAF0OjmChNvD7-_K9hPBuhXS2iKfY2JoY4w")
 # -------------------------------------------------------
 OWNER_USERNAME = getenv("OWNER_USERNAME","akd00bx377")
 # --------------------------------------------------------
@@ -20,13 +20,13 @@ BOT_USERNAME = getenv("BOT_USERNAME" , "akd_studio_music_bot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Musical bug")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "X")
+ASSUSERNAME = getenv("ASSUSERNAME" , "X_is_x_xx_is_not_x")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", None)
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://Mohmaya:mohmaya890@cluster0.mesiasx.mongodb.net/?retryWrites=true&w=majority")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
@@ -114,7 +114,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", None)
+STRING1 = getenv("STRING_SESSION", "BADIzg4AFi3oD-1TNAG-QhNR6CqvdkJffW5az1X_PryUFZXUhyra3OXPPiw4EAsOWNJW6sgn365RA0ESD4scLXLKkttrG81Z8wR9b27RwdXhBTCM4gHTWYJOwNe9JwmGMP-PHXjbg_fW-NzB8v5yFWNWtwtYZqQH4Wo6tx5TTqtmybUr1SVG75eBwf6QK2TdrNEt4OeSeBQQgh8E_C8rXSCFwM53f50A7gtumq0CACA5FyJNGXEhPXPZoNc45LNW15gimKhFMJgdDf8ptD19HSQUCogUxiauzHoAqZYN_ntLe_D-293c4Aoyrx6Fp2ap7Z8KgUabSv_nxc6LW444WUTy-kM75QAAAAGDlkN2AA")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
