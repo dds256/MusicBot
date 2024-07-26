@@ -20,13 +20,13 @@ BOT_USERNAME = getenv("BOT_USERNAME" , "akd_studio_music_bot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Musical bug")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "X_is_x_xx_is_not_x")
+ASSUSERNAME = getenv("ASSUSERNAME" , "x_is_x_xx_is_not_x")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://Mohmaya:mohmaya890@cluster0.mesiasx.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://xbot:mbot12@xbot.tgmshqs.mongodb.net/?retryWrites=true&w=majority&appName=xbot)
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
@@ -114,7 +114,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "BADIzg4AFi3oD-1TNAG-QhNR6CqvdkJffW5az1X_PryUFZXUhyra3OXPPiw4EAsOWNJW6sgn365RA0ESD4scLXLKkttrG81Z8wR9b27RwdXhBTCM4gHTWYJOwNe9JwmGMP-PHXjbg_fW-NzB8v5yFWNWtwtYZqQH4Wo6tx5TTqtmybUr1SVG75eBwf6QK2TdrNEt4OeSeBQQgh8E_C8rXSCFwM53f50A7gtumq0CACA5FyJNGXEhPXPZoNc45LNW15gimKhFMJgdDf8ptD19HSQUCogUxiauzHoAqZYN_ntLe_D-293c4Aoyrx6Fp2ap7Z8KgUabSv_nxc6LW444WUTy-kM75QAAAAGDlkN2AA")
+STRING1 = getenv("STRING_SESSION", "BQDIzg4AGmjm_0vWIqsen3jkN6TWjFx1MGlnSnCwGenmJjE1RCiFSq5-AHYuoNKX39C8H-WgnJl2IRNodw4c40Out9k4tMwhzCgCIuHZRar31w0OTP9uAB27kMVKkCxvtQag8X1N6RwXf02_NgiTmDS0iJafq-XbjmXnGd_KT06a_cyy8rEYNcaz1Y3o6Comu7ML_WpXmk_nVjl_6SpsEVu4q3GX5aEFZGngVXPgDn7423PoyXWytrN3vdMzokj4rcPr7kOBaWdJyYuhq8ovz6VygsSxeWPB0xzStAtUNkiFl3QfzioPUkcMpBuh5gocX1GizIz3MBSLGLzs5ZEnicLxhZqgAAAAGWuTYaAA")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
