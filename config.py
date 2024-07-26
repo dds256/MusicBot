@@ -20,7 +20,7 @@ BOT_USERNAME = getenv("BOT_USERNAME" , "akd_studio_music_bot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Musical bug")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "x_is_x_xx_is_not_x")
+ASSUSERNAME = getenv("ASSUSERNAME" , "x_is_x_but_xx_is_not_x")
 # ---------------------------------------------------------
 
 
@@ -55,7 +55,7 @@ UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/dds256/MusicBot",
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "Master")
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "web")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # ----------------------------------------------------------------
