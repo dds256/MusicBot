@@ -26,7 +26,7 @@ ASSUSERNAME = getenv("ASSUSERNAME" , "x_is_x_xx_is_not_x")
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://xbot:mbot12@xbot.tgmshqs.mongodb.net/?retryWrites=true&w=majority&appName=xbot)
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://xbot:mbot12@xbot.tgmshqs.mongodb.net/?retryWrites=true&w=majority&appName=xbot")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
