@@ -20,13 +20,13 @@ BOT_USERNAME = getenv("BOT_USERNAME" , "akd_studio_music_bot")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Musical bug")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "x_is_x_but_xx_is_not_x")
+ASSUSERNAME = getenv("ASSUSERNAME" , "moxasong")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://xbot:mbot12@xbot.tgmshqs.mongodb.net/?retryWrites=true&w=majority&appName=xbot")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://Mohmaya:mohmaya890@cluster0.mesiasx.mongodb.net/?retryWrites=true&w=majority")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
@@ -55,7 +55,7 @@ UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/dds256/MusicBot",
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "web")
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "Master")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", None
 )  # ----------------------------------------------------------------
@@ -114,7 +114,7 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "BQDIzg4AGmjm_0vWIqsen3jkN6TWjFx1MGlnSnCwGenmJjE1RCiFSq5-AHYuoNKX39C8H-WgnJl2IRNodw4c40Out9k4tMwhzCgCIuHZRar31w0OTP9uAB27kMVKkCxvtQag8X1N6RwXf02_NgiTmDS0iJafq-XbjmXnGd_KT06a_cyy8rEYNcaz1Y3o6Comu7ML_WpXmk_nVjl_6SpsEVu4q3GX5aEFZGngVXPgDn7423PoyXWytrN3vdMzokj4rcPr7kOBaWdJyYuhq8ovz6VygsSxeWPB0xzStAtUNkiFl3QfzioPUkcMpBuh5gocX1GizIz3MBSLGLzs5ZEnicLxhZqgAAAAGWuTYaAA")
+STRING1 = getenv("STRING_SESSION", "BQDIzg4Afz_97r1lnWTGCEIwPaEVQGoKD5iE8PgQ0Mi_yChUovjm6RbLmCLb_It5cRZK0ZVZGP1WOrzZNqvaKA-AB_hJPty7t5d3c7IFXZPZG5ZqqmJ9sIEDWvjafp2eW34vVuTfc5-GIR27pNHDjhEu3_TWn9upiN1sWLn547ksW2uKyIkJf6xpTt5d-jLK_nKt_gK5UJa2PGaGCVTAThB0bCe3Z9geK5xEERmFz3BNs4pZmasCvQRuRQbZyQTFSC6wh6CaTv0-QxxDRFDFake-auVgTsepdtR_pCo6JIE-MzvgYOAXOv3qbNsQc8dqRpnTvMKauP03rfkGmK8S1Xmx8sgbOgAAAAGWuTYaAA")
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
