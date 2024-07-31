@@ -4,7 +4,7 @@ from pyrogram import filters
 
 @app.on_message(filters.command("id_faker"))
 async def address(client, message):
-    user = message.from_user.first_name
+    user = message.from_user
     query = message.text.split(maxsplit=1)[1].strip() if len(message.text.split(maxsplit=1)) > 1 else "us"
     url = f"https://randomuser.me/api/?nat={query}"
     
@@ -60,5 +60,4 @@ async def address(client, message):
         await message.reply_photo(photo=picture_url, caption=caption)
     else:
         await process_message.delete()
-        await message.reply_text("ᴏᴏᴘs ɴᴏᴛ ғᴏᴜɴᴅ ᴀɴʏ ᴀᴅᴅʀᴇss.")
-        
+        await message.reply_text("Oops, could not generate a fake identity. Please try again later.")
