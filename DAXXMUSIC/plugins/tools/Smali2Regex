@@ -38,5 +38,5 @@ async def convert_regex_command(_, message: Message):
         search_term = args[1]
 
     regex_code = convert_to_regex(search_term)
-    formatted_code = f"```Regex\n{regex_code}\n```"
+    formatted_code = f"```Regex\n{regex_code}\n```\nGhostKiller thanks for the code"
     await message.reply(formatted_code, parse_mode="Markdown")
