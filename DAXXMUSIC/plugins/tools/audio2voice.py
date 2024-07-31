@@ -54,15 +54,15 @@ async def convert(
             await m.edit("Not a valid audio document, ABORTED!")
             return
 
-        if message.audio.file_size > 5000000:
-            await m.edit("Size too large, ABORTED!")
+        if message.audio.file_size > 20000000:
+            await m.edit("Size too large, sorry babe!")
             return
 
         file_path = await message.download()
         duration = await get_audio_duration(file_path)
 
         if duration > 900:
-            await m.edit("Audio file duration exceeds 15 minutes, ABORTED!")
+            await m.edit("Audio file duration exceeds 15 minutes, I'm sorry baby!")
             remove(file_path)
             return
 
@@ -75,7 +75,7 @@ async def convert(
         output_path = f"{path.splitext(audio_path)[0]}_output.ogg"
         success = await convert_audio_to_ogg(audio_path, output_path, 1000)
         if not success:
-            await m.edit("Couldn't compress the audio to fit the size limit, ABORTED!")
+            await m.edit("Couldn't compress the audio to fit the size limit, sorry!")
             return
         
         converted_documents.append(output_path)
@@ -86,7 +86,7 @@ async def convert(
         await main_message.reply_document(
             document=audio_path,
             caption=section(
-                "AUDIO2OGG",
+                "Audio to voice",
                 body={
                     "Title": path.basename(audio_path),
                     "Size": f"{path.getsize(audio_path) / (10 ** 6):.2f} MB",
