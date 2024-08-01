@@ -83,8 +83,10 @@ async def convert(
     elapsed = round(time() - start_time, 2)
 
     for audio_path in converted_documents:
-        await main_message.reply_document(
+        sent_message = await main_message.reply_document(
             document=audio_path,
+        )
+        await sent_message.reply(
             caption=section(
                 "Audio to voice",
                 body={
