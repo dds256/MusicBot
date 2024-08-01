@@ -18,11 +18,14 @@ def base64_to_text(base64_string):
 @app.on_message(filters.command("to_base64"))
 @capture_err
 async def to_base64_command(_, message: Message):
-    args = message.text.split(maxsplit=1)
-    if len(args) < 2:
-        return await message.reply("Please provide text to convert to Base64.")
+    if message.reply_to_message:
+        text = message.reply_to_message.text.strip()
+    else:
+        args = message.text.split(maxsplit=1)
+        if len(args) < 2:
+            return await message.reply("Please provide text to convert to Base64.")
+        text = args[1].strip()
     
-    text = args[1].strip()
     base64_string = text_to_base64(text)
     formatted_result = f"```\n{base64_string}\n```"
     await message.reply(formatted_result, parse_mode="Markdown")
@@ -30,11 +33,14 @@ async def to_base64_command(_, message: Message):
 @app.on_message(filters.command("from_base64"))
 @capture_err
 async def from_base64_command(_, message: Message):
-    args = message.text.split(maxsplit=1)
-    if len(args) < 2:
-        return await message.reply("Please provide Base64 string to convert to text.")
+    if message.reply_to_message:
+        base64_string = message.reply_to_message.text.strip()
+    else:
+        args = message.text.split(maxsplit=1)
+        if len(args) < 2:
+            return await message.reply("Please provide a Base64 string to convert to text.")
+        base64_string = args[1].strip()
     
-    base64_string = args[1].strip()
     try:
         text = base64_to_text(base64_string)
         formatted_result = f"```\n{text}\n```"
