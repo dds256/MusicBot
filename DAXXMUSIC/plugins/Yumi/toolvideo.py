@@ -1,71 +1,72 @@
 import os
+import time
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pydub import AudioSegment
-import speech_recognition as sr
 from DAXXMUSIC import app
-# --------------------------------------
 
-def convert_video_to_text(video_path):
-    audio = AudioSegment.from_file(video_path)
-    audio.export("audio.wav", format="wav")
-# -----------------------------------------
-    recognizer = sr.Recognizer()
-    with sr.AudioFile("audio.wav") as source:
-        audio_data = recognizer.record(source)
-# --------------------------------------------
-    text = recognizer.recognize_google(audio_data)
-    return text
+# Constants
+MAX_FILE_SIZE_MB = 100
+MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024  # Convert MB to bytes
 
-# ----------------------------------------------
+def generate_unique_filename(extension):
+    timestamp = int(time.time())
+    return f"output_{timestamp}.{extension}"
 
-@app.on_message(filters.command("vtxt") & filters.reply)
-def convert_video_to_text_cmd(_, message: Message):
-    # -------------------------------
-    video_path = message.reply_to_message.download("video.mp4")
+@app.on_message(filters.command("extract") & filters.reply)
+async def extract_media_cmd(client, message: Message):
+    process_message = await message.reply_text("Processing...")
 
-    # ------------------------------
-    text_result = convert_video_to_text(video_path)
+    try:
+        replied_message = message.reply_to_message
 
-    # --------------------------
-    with open("file.txt", "w", encoding="utf-8") as file:
-        file.write(text_result)
-     # ---------------------------   
-    message.reply_document("file.txt")
-    
-    
-    
-    # -------------------------------------
-    
-@app.on_message(filters.command("remove", prefixes="/") & filters.reply)
-def remove_media(client, message: Message):
-    # Fetching the replied message
-    replied_message = message.reply_to_message
+        if replied_message.video:
+            if len(message.command) > 1:
+                command = message.command[1].lower()
+                file_path = await replied_message.download()
 
-    if replied_message.video:
-        # If the replied message is a video, remove either the audio or the video depending on the command
-        if len(message.command) > 1:
-            command = message.command[1].lower()
-            if command == "audio":
-                # Remove audio
-                file_path = app.download_media(replied_message.video)
-                audio = AudioSegment.from_file(file_path)
-                audio = audio.set_channels(1)
-                audio.export("output.mp3", format="mp3")
-                app.send_audio(message.chat.id, "output.mp3")
-                os.remove(file_path)
-                os.remove("output.mp3")
-            elif command == "video":
-                # Remove video
-                file_path = app.download_media(replied_message.video)
-                os.system(f"ffmpeg -i {file_path} -c copy -an output.mp4")
-                app.send_video(message.chat.id, "output.mp4")
-                os.remove(file_path)
-                os.remove("output.mp4")
+                if os.path.getsize(file_path) > MAX_FILE_SIZE_BYTES:
+                    os.remove(file_path)
+                    await process_message.edit_text("The file size exceeds 100 MB. Please provide a smaller file.")
+                    return
+                
+                if command == "audio":
+                    await process_message.edit_text("Extracting audio from video...")
+                    audio_path = generate_unique_filename("mp3")
+                    audio = AudioSegment.from_file(file_path)
+                    audio = audio.set_channels(1)
+                    audio.export(audio_path, format="mp3")
+                    await client.send_audio(message.chat.id, audio_path)
+                    
+                    os.remove(file_path)
+                    os.remove(audio_path)
+                
+                elif command == "video":
+                    await process_message.edit_text("Extracting video without audio...")
+                    video_path = generate_unique_filename("mp4")
+                    os.system(f"ffmpeg -i {file_path} -c copy -an {video_path}")
+                    await client.send_video(message.chat.id, video_path)
+                    
+                    os.remove(file_path)
+                    os.remove(video_path)
+                
+                else:
+                    await process_message.edit_text("Invalid command. Please use either `/extract audio` or `/extract video`.")
+            
             else:
-                app.send_message(message.chat.id, "Invalid command. Please use either /remove audio or /remove video.")
-        else:
-            app.send_message(message.chat.id, "Please specify whether to remove audio or video using /remove audio or /remove video.")
-    else:
-        app.send_message(message.chat.id, "The replied message is not a video.")
+                await process_message.edit_text("Please specify whether to extract audio or video using `/extract audio` or `/extract video`.")
         
+        else:
+            await process_message.edit_text("The replied message is not a video.")
+    
+    except Exception as e:
+        await process_message.edit_text(f"An error occurred: {str(e)}")
+    
+    finally:
+        # Cleanup if file was not handled or any additional cleanup
+        if os.path.exists(file_path):
+            os.remove(file_path)
+        if os.path.exists(audio_path):
+            os.remove(audio_path)
+        if os.path.exists(video_path):
+            os.remove(video_path)
