@@ -3,6 +3,8 @@ aiohttp
 apscheduler
 asyncio
 bard
+youtube_dl==2021.12.17
+bing_image_downloader 
 beautifulsoup4
 bs4
 cloudscraper
@@ -58,6 +60,6 @@ telegraph
 tgcrypto
 unidecode
 wget
-yt-dlp==2024.5.26
+yt-dlp==2024.7.9
 youtube-search
 youtube-search-python
