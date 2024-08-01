@@ -7,15 +7,19 @@ def decimal_to_hex(decimal_number):
     hex_value = hex(decimal_number)
     return hex_value
 
-@app.on_message(filters.command("/dec2hex"))
+@app.on_message(filters.command("dec2hex"))
 @capture_err
 async def hex_converter_command(_, message: Message):
-    args = message.text.split(maxsplit=1)
-    if len(args) < 2:
-        return await message.reply("Please provide a decimal number to convert to hex.")
+    if message.reply_to_message:
+        input_text = message.reply_to_message.text.strip()
+    else:
+        args = message.text.split(maxsplit=1)
+        if len(args) < 2:
+            return await message.reply("Please provide a decimal number to convert to hex.")
+        input_text = args[1].strip()
     
     try:
-        decimal_number = int(args[1].strip())
+        decimal_number = int(input_text)
         hex_value = decimal_to_hex(decimal_number)
         choice_prompt = "\nAre you using this for patching Smali? (Y/N)"
         choice_message = await message.reply(choice_prompt)
