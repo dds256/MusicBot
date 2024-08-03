@@ -23,6 +23,7 @@ async def extract_media_cmd(client, message: Message):
         if replied_message.video:
             if len(message.command) > 1:
                 command = message.command[1].lower()
+                await process_message.edit_text("Downloading video file...")
                 file_path = await replied_message.download()
 
                 if os.path.getsize(file_path) > MAX_FILE_SIZE_BYTES:
@@ -36,6 +37,7 @@ async def extract_media_cmd(client, message: Message):
                     audio = AudioSegment.from_file(file_path)
                     audio = audio.set_channels(1)
                     audio.export(audio_path, format="mp3")
+                    await process_message.edit_text("Uploading extracted audio...")
                     await client.send_audio(message.chat.id, audio_path)
                     
                     os.remove(file_path)
@@ -45,6 +47,7 @@ async def extract_media_cmd(client, message: Message):
                     await process_message.edit_text("Extracting video without audio...")
                     video_path = generate_unique_filename("mp4")
                     os.system(f"ffmpeg -i {file_path} -c copy -an {video_path}")
+                    await process_message.edit_text("Uploading extracted video...")
                     await client.send_video(message.chat.id, video_path)
                     
                     os.remove(file_path)
