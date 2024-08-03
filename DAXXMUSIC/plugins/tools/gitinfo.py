@@ -6,7 +6,7 @@ from DAXXMUSIC import app
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 ###
-@app.on_message(filters.command("daxxhub"))
+@app.on_message(filters.command("ghub"))
 async def daxxhub(_, message):
     text = message.text[len("/daxxhub") :]
     papadaxx(f"{text}").save(f"daxxhub_{message.from_user.id}.png")
@@ -17,7 +17,7 @@ async def daxxhub(_, message):
 @app.on_message(filters.command(["github", "git"]))
 async def github(_, message):
     if len(message.command) != 2:
-        await message.reply_text("/git DAXXTEAM")
+        await message.reply_text("/git Moxa")
         return
 
     username = message.text.split(None, 1)[1]
