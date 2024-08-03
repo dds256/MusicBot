@@ -4,37 +4,12 @@ from bs4 import BeautifulSoup
 from DAXXMUSIC import app
 import pytgcalls
 import os, yt_dlp 
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message
+from pyrogram.types import Message
 from pytgcalls.types import AudioVideoPiped
 from DAXXMUSIC.plugins.play import play
 from DAXXMUSIC.plugins.play.pornplay import play
 
-#
-#####
-
 vdo_link = {}
-
-keyboard = InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton("⊝ ᴄʟᴏsᴇ ⊝", callback_data="close_data"), 
-            InlineKeyboardButton("⊝ ᴠᴘʟᴀʏ⊝", callback_data="play"),
-        ]
-])
-
-
-# Define your callback function
-@app.on_callback_query(filters.regex("^play"))
-async def play_callback(_, query):
-    # You can add more logic here before initiating playback
-    await play(query.from_user.id)  # Assuming play function accepts user ID
-    await query.answer("Playback started!")
-        
-##########🖕
-
-@app.on_callback_query(filters.regex("^close_data"))
-async def close_callback(_, query):
-    chat_id = query.message.chat.id
-    await query.message.delete()
 
 async def get_video_stream(link):
     ydl_opts = {
@@ -55,12 +30,6 @@ async def get_video_stream(link):
     x.download([link])
     return video
 
-
-
-
-
-
-
 def get_video_info(title):
     url_base = f'https://www.xnxx.com/search/{title}'
     try:
@@ -76,12 +45,10 @@ def get_video_info(title):
                     thumbnail_500 = thumbnail.replace('/h', '/m').replace('/1.jpg', '/3.jpg')
                     link = random_video.find('div', class_="thumb-under").find('a').get("href")
                     if link and 'https://' not in link:  # Check if the link is a valid video link
-                        return {'link': 'https://www.xnxx.com' + link, 'thumbnail': thumbnail_500}
+                        return {'link': 'https://www.ex.com' + link, 'thumbnail': thumbnail_500}
     except Exception as e:
         print(f"Error: {e}")
     return None
-
-
 
 @app.on_message(filters.command("porn"))
 async def get_random_video_info(client, message):
@@ -90,25 +57,16 @@ async def get_random_video_info(client, message):
         return
 
     title = ' '.join(message.command[1:])
+    await message.reply("Processing your request...")
     video_info = get_video_info(title)
     
     if video_info:
         video_link = video_info['link']
         video = await get_video_stream(video_link)
         vdo_link[message.chat.id] = {'link': video_link}
-        keyboard1 = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton("⊝ ᴄʟᴏsᴇ ⊝", callback_data="close_data"), 
-                InlineKeyboardButton("⊝ ᴠᴘʟᴀʏ⊝", callback_data=f"vplay"),
-            ]
-    ])
-        await message.reply_video(video, caption=f"{title}", reply_markup=keyboard1)
-             
+        await message.reply_video(video, caption=f"{title}")
     else:
         await message.reply(f"No video link found for '{title}'.")
-
-######
-
 
 @app.on_message(filters.command("xnxx"))
 async def get_random_video_info(client, message):
@@ -117,21 +75,20 @@ async def get_random_video_info(client, message):
         return
 
     title = ' '.join(message.command[1:])
+    await message.reply("Processing your request...")
     video_info = get_video_info(title)
     
     if video_info:
         video_link = video_info['link']
         video = await get_video_stream(video_link)
         
-        # Additional information
-        views = get_views_from_api(video_link)  # Replace with actual API call or logic to get views
-        ratings = get_ratings_from_api(video_link)  # Replace with actual API call or logic to get ratings
+        # Placeholder for additional information
+        views = "N/A"  # Replace with actual logic to get views
+        ratings = "N/A"  # Replace with actual logic to get ratings
 
         await message.reply_video(
             video,
-            caption=f"Add Title: {title}\nViews: {views}\nRatings: {ratings}",
-            reply_markup=keyboard
+            caption=f"Add Title: {title}\nViews: {views}\nRatings: {ratings}"
         )
     else:
         await message.reply(f"No video link found for '{title}'.")
-            
