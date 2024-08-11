@@ -4,7 +4,6 @@ from DAXXMUSIC.core.git import git
 from DAXXMUSIC.core.userbot import Userbot
 from DAXXMUSIC.misc import dbb, heroku
 
-from SafoneAPI import SafoneAPI
 from .logging import LOGGER
 
 dirr()
@@ -12,8 +11,7 @@ git()
 dbb()
 heroku()
 
-app = DAXX()
-api = SafoneAPI()
+app = DC()
 userbot = Userbot()
 
 
@@ -26,3 +24,4 @@ Spotify = SpotifyAPI()
 Resso = RessoAPI()
 Telegram = TeleAPI()
 YouTube = YouTubeAPI()
+YTB = YTM()
