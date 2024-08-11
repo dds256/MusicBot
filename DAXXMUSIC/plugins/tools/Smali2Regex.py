@@ -28,15 +28,21 @@ def convert_to_regex(search_term):
 @app.on_message(filters.command("regex"))
 @capture_err
 async def convert_regex_command(_, message: Message):
-    args = message.text.split(None, 1)
-    if len(args) < 2:
-        reply = message.reply_to_message
-        if not reply or not reply.text:
-            return await message.reply("Please provide the smali code as an input or reply with command /regex to a message containing the code to convert.")
-        search_term = reply.text
+    # Check if the command has an argument
+    if message.command and len(message.command) > 1:
+        search_term = message.text.split(None, 1)[1]  # Get everything after the command
     else:
-        search_term = args[1]
+        # If no argument, check if it is a reply
+        reply = message.reply_to_message
+        if reply and reply.text:
+            search_term = reply.text
+        else:
+            # Send a message if no input is provided
+            return await message.reply(
+                "Please provide the smali code as an input or reply with the command /regex to a message containing the code to convert."
+            )
 
     regex_code = convert_to_regex(search_term)
     formatted_code = f"```Regex\n{regex_code}\n```\nGhostKiller thanks for the code"
     await message.reply(formatted_code, parse_mode="Markdown")
+    
